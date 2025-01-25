@@ -7,10 +7,17 @@ public class PlayerShip : MonoBehaviour {
     public Vector3 forceVector;
     public float maxSpeed;
 
+    public Camera mainCamera;
+    public float shakeDuration;
+    public float shakeMagnitude;
     // Start is called before the first frame update
     void Start() {
         forceVector.x = 20.0f;
         maxSpeed = 50.0f;
+
+        shakeDuration = 0.5f;
+        shakeMagnitude = 0.5f;
+        mainCamera = Camera.main;
     }
 
     void FixedUpdate() {
@@ -61,5 +68,26 @@ public class PlayerShip : MonoBehaviour {
         GameObject obj = GameObject.Find("GlobalObject");
         Global g = obj.GetComponent<Global>();
         g.lives--;
+
+        // Shake the camera
+        StartCoroutine(CameraShake());
+    }
+
+    IEnumerator CameraShake() {
+        Vector3 originalPos = mainCamera.transform.position;
+        float elapsedTime = shakeDuration;
+
+        while (elapsedTime > 0) {
+            float offsetX = Random.Range(-1.0f, 1.0f) * shakeMagnitude;
+            float offsetY = Random.Range(-1.0f, 1.0f) * shakeMagnitude;
+
+            mainCamera.transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
+
+            elapsedTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        // Reset the camera position
+        mainCamera.transform.position = originalPos;
     }
 }
