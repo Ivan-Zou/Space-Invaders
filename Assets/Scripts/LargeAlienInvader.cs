@@ -39,6 +39,7 @@ public class LargeAlienInvader : MonoBehaviour {
                 // Spawn Projectile
                 Vector3 spawnPos = gameObject.transform.position;
                 spawnPos.y -= 0.55f;
+                spawnPos.z -= 0.35f;
                 GameObject obj = Instantiate(projectile, spawnPos, Quaternion.identity) as GameObject;
                 ResetShootTimer();
             }
