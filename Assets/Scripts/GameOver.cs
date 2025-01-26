@@ -39,9 +39,9 @@ public class GameOver : MonoBehaviour {
 
     void OnGUI() {
         // Game Over Text
-        GUI.Label(new Rect(0, 100, Screen.width, 100), "GAME OVER!", gameOverTextStyle);
+        GUI.Label(new Rect(0, 200, Screen.width, 100), "GAME OVER!", gameOverTextStyle);
         // Score Text
-        GUI.Label(new Rect(0, 350, Screen.width, 100), $"SCORE: {score}", scoreTextStyle);
-        GUI.Label(new Rect(0, 500, Screen.width, 100), $"HI-SCORE: {hiscore}", scoreTextStyle);
+        GUI.Label(new Rect(0, 450, Screen.width, 100), $"SCORE: {score}", scoreTextStyle);
+        GUI.Label(new Rect(0, 600, Screen.width, 100), $"HI-SCORE: {hiscore}", scoreTextStyle);
     }
 }
