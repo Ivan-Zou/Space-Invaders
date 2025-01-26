@@ -8,6 +8,8 @@ public class PlayerShip : MonoBehaviour {
     public float maxSpeed;
 
     public Camera mainCamera;
+    public Camera povCamera;
+    public bool isPOVCameraActive;
     public float shakeDuration;
     public float shakeMagnitude;
     // Start is called before the first frame update
@@ -17,7 +19,9 @@ public class PlayerShip : MonoBehaviour {
 
         shakeDuration = 0.5f;
         shakeMagnitude = 0.5f;
-        mainCamera = Camera.main;
+
+        mainCamera.gameObject.SetActive(true);
+        povCamera.gameObject.SetActive(false);
     }
 
     void FixedUpdate() {
@@ -57,6 +61,19 @@ public class PlayerShip : MonoBehaviour {
             spawnPos.y = 1.5f;
             GameObject obj = Instantiate(projectile, spawnPos, Quaternion.identity) as GameObject;
             
+        }
+        
+        // Switch Camera
+        if (Input.GetKeyDown(KeyCode.F)) {
+            isPOVCameraActive = !isPOVCameraActive;
+
+        if (isPOVCameraActive) {
+            povCamera.gameObject.SetActive(true);
+            mainCamera.gameObject.SetActive(false);
+        } else {
+            mainCamera.gameObject.SetActive(true);
+            povCamera.gameObject.SetActive(false);
+        }
         }
     }
 
