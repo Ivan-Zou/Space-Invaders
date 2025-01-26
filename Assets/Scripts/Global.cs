@@ -10,7 +10,7 @@ public class Global : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         score = 0;
-        hiscore = score;
+        hiscore = PlayerPrefs.GetInt("Hi-Score", 0);;
         lives = 3;
     }
 
