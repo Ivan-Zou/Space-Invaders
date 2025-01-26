@@ -102,6 +102,6 @@ public class PlayerShip : MonoBehaviour {
 
         // Reset the camera position
         mainCamera.transform.position = mainCameraPos;
-        povCamera.transform.position = gameObject.transform.position;
+        povCamera.transform.position = gameObject.transform.position + new Vector3(0, -1.0f, -1.0f);
     }
 }
