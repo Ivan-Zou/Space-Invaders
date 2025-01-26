@@ -66,14 +66,8 @@ public class PlayerShip : MonoBehaviour {
         // Switch Camera
         if (Input.GetKeyDown(KeyCode.F)) {
             isPOVCameraActive = !isPOVCameraActive;
-
-        if (isPOVCameraActive) {
-            povCamera.gameObject.SetActive(true);
-            mainCamera.gameObject.SetActive(false);
-        } else {
-            mainCamera.gameObject.SetActive(true);
-            povCamera.gameObject.SetActive(false);
-        }
+            povCamera.gameObject.SetActive(isPOVCameraActive);
+            mainCamera.gameObject.SetActive(!isPOVCameraActive);
         }
     }
 
@@ -91,20 +85,23 @@ public class PlayerShip : MonoBehaviour {
     }
 
     IEnumerator CameraShake() {
-        Vector3 originalPos = mainCamera.transform.position;
+        Vector3 mainCameraPos = mainCamera.transform.position;
+        Vector3 povCameraPos = povCamera.transform.position;
         float elapsedTime = shakeDuration;
 
         while (elapsedTime > 0) {
             float offsetX = Random.Range(-1.0f, 1.0f) * shakeMagnitude;
             float offsetY = Random.Range(-1.0f, 1.0f) * shakeMagnitude;
 
-            mainCamera.transform.position = originalPos + new Vector3(offsetX, offsetY, 0);
+            mainCamera.transform.position = mainCameraPos + new Vector3(offsetX, offsetY, 0);
+            povCamera.transform.position = povCameraPos + new Vector3(offsetX, offsetY, 0);
 
             elapsedTime -= Time.deltaTime;
             yield return null;
         }
 
         // Reset the camera position
-        mainCamera.transform.position = originalPos;
+        mainCamera.transform.position = mainCameraPos;
+        povCamera.transform.position = gameObject.transform.position;
     }
 }
