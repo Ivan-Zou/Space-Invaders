@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Global : MonoBehaviour {
 
@@ -17,6 +18,15 @@ public class Global : MonoBehaviour {
     void Update() {
         if (hiscore < score) {
             hiscore = score;
+        }
+
+        // Game Over
+        if (lives == 0) {
+            // Store Score and High Score
+            PlayerPrefs.SetInt("Score", score);
+            PlayerPrefs.SetInt("Hi-Score", hiscore);
+            // Load Game Over Scene
+            SceneManager.LoadScene("GameOverScene");
         }
     }
 }
