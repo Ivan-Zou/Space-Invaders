@@ -5,32 +5,40 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class StartScene : MonoBehaviour {
-    private GUIStyle buttonStyle, titleStyle;
-    
+    private GUIStyle buttonStyle, titleStyle, scoreTextStyle;
+    private int score, hiscore;
+
     // Start is called before the first frame update
     void Start() {
+        // Retrieve the score and high score
+        score = PlayerPrefs.GetInt("Score", 0);
+        hiscore = PlayerPrefs.GetInt("Hi-Score", 0);
+
+        // set text styles
         buttonStyle = new GUIStyle();
         buttonStyle.normal.textColor = Color.white;
-        buttonStyle.fontSize = 75;
+        buttonStyle.fontSize = 50;
         buttonStyle.alignment = TextAnchor.MiddleCenter; 
-        buttonStyle.padding = new RectOffset(20, 20, 20, 20);
+        buttonStyle.padding = new RectOffset(10, 10, 10, 10);
 
         titleStyle = new GUIStyle();
         titleStyle.normal.textColor = Color.white;
-        titleStyle.fontSize = 200;
+        titleStyle.fontSize = 100;
         titleStyle.alignment = TextAnchor.MiddleCenter;
-    }
 
-    // Update is called once per frame
-    void Update() {
-        
+        scoreTextStyle = new GUIStyle();
+        scoreTextStyle.normal.textColor = Color.white;
+        scoreTextStyle.fontSize = 50;
+        scoreTextStyle.alignment = TextAnchor.MiddleCenter;
     }
 
     void OnGUI() {
+        // Scores
+        GUI.Label(new Rect(0, 50, Screen.width, 100), $"PREVIOUS SCORE: {score}          HI-SCORE: {hiscore}", scoreTextStyle);
         // title
-        GUI.Label(new Rect(0, 75, Screen.width, 100), "Space Invaders", titleStyle);
+        GUI.Label(new Rect(0, 150, Screen.width, 100), "Space Invaders", titleStyle);
 
-        GUILayout.BeginArea(new Rect(10, Screen.height / 2 + 100, Screen.width - 10, 300));
+        GUILayout.BeginArea(new Rect(10, 275, Screen.width - 10, 300));
         // Load Gameplay scene
         if (GUILayout.Button("Play", buttonStyle)) {
             SceneManager.LoadScene("GameplayScene");
