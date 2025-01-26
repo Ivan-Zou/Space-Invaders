@@ -110,7 +110,7 @@ public class AlienInvaders : MonoBehaviour {
             for (int col = 0; col < cols; col++) {
                 if (invadersGrid[row, col] != null) {
                     Vector3 currPos = invadersGrid[row, col].transform.position;
-                    if (currPos.x <= -20.0f || currPos.x >= 20.0f) {
+                    if (currPos.x <= -16.0f || currPos.x >= 16.0f) {
                         hitEdge = true;
                         break;
                     }
