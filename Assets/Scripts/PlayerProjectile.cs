@@ -15,8 +15,7 @@ public class PlayerProjectile : MonoBehaviour {
     // Update is called once per frame
     void Update() {
         // Destroy projectiles when they are off-screen
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        if (screenPos.y > Screen.height + 15) {
+        if (gameObject.transform.position.y > 50) {
             Destroy(gameObject);
         }
     }

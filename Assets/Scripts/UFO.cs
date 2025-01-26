@@ -38,8 +38,7 @@ public class UFO : MonoBehaviour {
         // Rotate the UFO
         gameObject.transform.Rotate(Vector3.up * rotSpeed * Time.deltaTime);
         // Despawn the UFO when it goes out of the screen
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        if (screenPos.x > Screen.width - 50) {
+        if (gameObject.transform.position.x > 50) {
             Destroy(gameObject);
         }
     }

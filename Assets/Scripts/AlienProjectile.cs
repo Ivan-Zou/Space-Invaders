@@ -18,8 +18,7 @@ public class AlienProjectile : MonoBehaviour {
         gameObject.transform.position += Vector3.down * speed * Time.deltaTime;
 
         // Destroy projectiles when they are off-screen
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(gameObject.transform.position);
-        if (screenPos.y < -15) {
+        if (gameObject.transform.position.y < -5) {
             Destroy(gameObject);
         }
     }
