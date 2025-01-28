@@ -10,6 +10,10 @@ public class StartScene : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        // Reset Score and Hi-Score
+        // PlayerPrefs.SetInt("Score", 0);
+        // PlayerPrefs.SetInt("Hi-Score", 0);
+
         // Retrieve the score and high score
         score = PlayerPrefs.GetInt("Score", 0);
         hiscore = PlayerPrefs.GetInt("Hi-Score", 0);
@@ -34,7 +38,7 @@ public class StartScene : MonoBehaviour {
 
     void OnGUI() {
         // Scores
-        GUI.Label(new Rect(0, 50, Screen.width, 100), $"PREVIOUS SCORE: {score}          HI-SCORE: {hiscore}", scoreTextStyle);
+        GUI.Label(new Rect(0, 50, Screen.width, 100), $"PREVIOUS SCORE: {score}  \t\t\t  HI-SCORE: {hiscore}", scoreTextStyle);
         // title
         GUI.Label(new Rect(0, 150, Screen.width, 100), "Space Invaders", titleStyle);
 
